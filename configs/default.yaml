@@ -1,0 +1,36 @@
+llm:
+  primary_model: "anthropic/claude-sonnet-4-20250514"
+  fallback_model: "openai/gpt-4o"
+  research_model: "google/gemini-2.5-pro"
+  temperature: 0.3
+  max_tokens: 16384
+  timeout_seconds: 120
+  max_retries: 3
+
+docker:
+  base_image: "python:3.10-slim"
+  gpu_runtime: null
+  memory_limit: "16g"
+  timeout_seconds: 7200
+  network_mode: "bridge"
+  platform: "linux/amd64"
+
+pipeline:
+  max_iterations: 15
+  max_fix_attempts: 5
+  stagnation_window: 3
+  honeymoon_iterations: 5
+  budget_wall_clock_hours: 8.0
+  budget_llm_calls: 500
+
+supervisor:
+  red_lines:
+    - "R1: Evaluation metric parameters must not change"
+    - "R2: Evaluation script integrity must be maintained"
+    - "R3: Integrity of algorithm outputs must not be violated"
+    - "R4: No unfair trade-offs between metric dimensions"
+    - "R5: Dataset integrity must be preserved"
+    - "R6: No modification of the dataset"
+    - "R7: Paper-specific constraints must be explicitly identified and followed"
+
+workspace_root: "./workspace"

@@ -1,0 +1,10 @@
+# Overrides for Apple Silicon (M1/M2/M3/M4) local development
+docker:
+  gpu_runtime: null
+  memory_limit: "16g"
+  platform: "linux/arm64"
+
+pipeline:
+  max_iterations: 10
+  budget_wall_clock_hours: 4.0
+  budget_llm_calls: 200
